@@ -34,6 +34,7 @@
     NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedPhotoNum"];
     if (self.isSelected) {
         self.checkImg.image = [UIImage imageNamed:@"button-unchecked@2x"];
+        self.photoSelectedBlock(NO,_model.photoIndex);
         [[NSUserDefaults standardUserDefaults] setInteger:(num-1) forKey:@"selectedPhotoNum"];
     }
     else {
@@ -44,6 +45,7 @@
             animation.velocity = [NSValue valueWithCGSize:CGSizeMake(10.0f, 10.0f)];
             animation.springBounciness = 20.0f;
             [self.checkImg.layer pop_addAnimation:animation forKey:@"layerScaleSpringAnimation"];
+            self.photoSelectedBlock(YES,_model.photoIndex);
             [[NSUserDefaults standardUserDefaults] setInteger:(num+1) forKey:@"selectedPhotoNum"];
         }
         else {

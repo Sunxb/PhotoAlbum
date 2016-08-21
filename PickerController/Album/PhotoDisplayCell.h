@@ -17,5 +17,6 @@
 @property (nonatomic,strong) PhotoModel * model;
 
 @property (nonatomic,copy) void(^photoNumIsEnoughBlock)();
+@property (nonatomic,copy) void(^photoSelectedBlock)(BOOL isSelected, NSInteger selectedIndex);
 
 @end

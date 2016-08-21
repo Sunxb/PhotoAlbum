@@ -20,6 +20,7 @@
 		3F6D552B1D68237400A36272 /* PhotoDisplayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D55241D68237400A36272 /* PhotoDisplayCell.xib */; };
 		3F6D552C1D68237400A36272 /* PhotoDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D55261D68237400A36272 /* PhotoDisplayView.m */; };
 		3F6D552F1D682A9D00A36272 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D552E1D682A9D00A36272 /* PhotoModel.m */; };
+		3F7A3F101D694A0A00C186D7 /* ShowSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A3F0F1D694A0A00C186D7 /* ShowSelectedViewController.m */; };
 		E711AE9BBA0E1A82349EC4FC /* libPods-PickerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDD2C0A1AE4332EDDCCC086 /* libPods-PickerController.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,8 @@
 		3F6D55261D68237400A36272 /* PhotoDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDisplayView.m; sourceTree = "<group>"; };
 		3F6D552D1D682A9D00A36272 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		3F6D552E1D682A9D00A36272 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		3F7A3F0E1D694A0A00C186D7 /* ShowSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedViewController.h; sourceTree = "<group>"; };
+		3F7A3F0F1D694A0A00C186D7 /* ShowSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedViewController.m; sourceTree = "<group>"; };
 		6BDD2C0A1AE4332EDDCCC086 /* libPods-PickerController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PickerController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AB0BA32A890C9DA10972A1 /* Pods-PickerController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickerController.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PickerController/Pods-PickerController.debug.xcconfig"; sourceTree = "<group>"; };
 		D93AFC34F87A5EE5754F0446 /* Pods-PickerController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PickerController.release.xcconfig"; path = "Pods/Target Support Files/Pods-PickerController/Pods-PickerController.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				3F6D54E81D67F8C500A36272 /* ViewController.h */,
 				3F6D54E91D67F8C500A36272 /* ViewController.m */,
 				3F6D54EB1D67F8C500A36272 /* Main.storyboard */,
+				3F7A3F0E1D694A0A00C186D7 /* ShowSelectedViewController.h */,
+				3F7A3F0F1D694A0A00C186D7 /* ShowSelectedViewController.m */,
 				3F6D54EE1D67F8C500A36272 /* Assets.xcassets */,
 				3F6D54F01D67F8C500A36272 /* LaunchScreen.storyboard */,
 				3F6D54F31D67F8C500A36272 /* Info.plist */,
@@ -225,7 +230,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		870AAEA9711AE5E7D0CB53D4 /* [CP] Embed Pods Frameworks */ = {
@@ -265,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7A3F101D694A0A00C186D7 /* ShowSelectedViewController.m in Sources */,
 				3F6D552A1D68237400A36272 /* PhotoDisplayCell.m in Sources */,
 				3F6D552F1D682A9D00A36272 /* PhotoModel.m in Sources */,
 				3F6D54EA1D67F8C500A36272 /* ViewController.m in Sources */,

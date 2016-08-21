@@ -9,14 +9,16 @@
 #import "PhotoAlbumViewController.h"
 #import "PhotoDisplayView.h"
 #import "PhotoModel.h"
+#import "ShowSelectedViewController.h"
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <POP/POP.h>
+#import <MBProgressHUD.h>
 
 #define KWidth self.view.frame.size.width
 #define KHeight self.view.frame.size.height
 
-@interface PhotoAlbumViewController ()
+@interface PhotoAlbumViewController ()<PhotoDisplayViewDelegate>
 @property (nonatomic,strong) NSMutableDictionary * albumDict;
 @property (nonatomic,strong) NSMutableArray * thumbnailArr;
 
@@ -25,6 +27,7 @@
 @property (nonatomic,strong) UILabel * tipPhotoNumLbl;
 //@property (nonatomic,strong) NSString * photoNum;
 @property (nonatomic,assign) NSInteger photoNum;
+@property (nonatomic,strong) NSMutableArray * indexArr;
 @end
 
 @implementation PhotoAlbumViewController
@@ -53,6 +56,10 @@
     [doneBtn addTarget:self action:@selector(clickedOnDoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:doneBtn];
     
+    if ([self.navigationController.navigationBar viewWithTag:100]) {
+        [[self.navigationController.navigationBar viewWithTag:100] removeFromSuperview];
+    }
+    
     _tipPhotoNumLbl = [[UILabel alloc] initWithFrame:CGRectMake(KWidth-50-25, 15, 20, 20)];
     _tipPhotoNumLbl.hidden = YES;
     _tipPhotoNumLbl.layer.cornerRadius = 10.0f;
@@ -61,6 +68,7 @@
     _tipPhotoNumLbl.textColor = [UIColor whiteColor];
     _tipPhotoNumLbl.textAlignment = NSTextAlignmentCenter;
     _tipPhotoNumLbl.backgroundColor = [UIColor redColor];
+    _tipPhotoNumLbl.tag = 100;
     [self.navigationController.navigationBar addSubview:_tipPhotoNumLbl];
 }
 
@@ -93,12 +101,30 @@
 
 #pragma mark 完成
 - (void)clickedOnDoneBtn:(UIButton *)btn {
+    if (_indexArr.count==0) {
+        return;
+    }
     
+    NSMutableArray * selectedAllPhotoArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _indexArr.count; i ++) {
+        NSInteger index = [_indexArr[i] integerValue];
+        [selectedAllPhotoArr addObject:_thumbnailArr[index]];
+    }
+    
+    ShowSelectedViewController * showVC = [[ShowSelectedViewController alloc] init];
+    showVC.selectedPhotoArr = selectedAllPhotoArr;
+    [self.navigationController pushViewController:showVC animated:YES];
+    
+    NSLog(@"%@",_indexArr);
 }
 
 #pragma mark 加载展示photo的view
 - (void)loadPhotoDisplayView {
     _displayView = [[PhotoDisplayView alloc] initWithFrame:CGRectMake(0, 64, KWidth, KHeight-64)];
+    _displayView.delegate = self;
+    [_displayView setSelectedPhotoIndexBlock:^(NSArray * selectedIndexArr) {
+        _indexArr = [[NSMutableArray alloc] initWithArray:selectedIndexArr];
+    }];
     [_displayView loadPhotoAlbumView];
     [self.view addSubview:_displayView];
 }
@@ -113,12 +139,9 @@
 //    }
     
     _thumbnailArr = [[NSMutableArray alloc] init];
-    // 获得相机胶卷
+    // 获得系统相册
     PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
     [self enumerateAssetsInAssetCollection:cameraRoll original:NO containerArr:_thumbnailArr];
-//    NSLog(@"%@",self.thumbnailArr);
-    [_albumDict setObject:_thumbnailArr forKey:cameraRoll.localizedTitle];
-    
     _displayView.photoArr = [[NSMutableArray alloc] initWithArray:_thumbnailArr];
     [_displayView loadPhotoAlbumView];
     
@@ -159,15 +182,24 @@
             photoMod.displayImg = result;
             photoMod.isSelected = NO;
             [containerArr addObject:photoMod];
-//            NSLog(@"%@", result);
         }];
     }
+}
+
+
+#pragma mark 照片已满9张的delegate
+- (void)photoDisplayView_photoSelectedEnough {
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"最多可选9张照片";
+    
+    [hud hide:YES afterDelay:2.0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     _photoNum = 0;
-    _tipPhotoNumLbl.hidden = YES;
+    [_tipPhotoNumLbl removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {

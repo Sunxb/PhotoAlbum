@@ -11,7 +11,8 @@
 
 @interface PhotoModel : NSObject
 
-@property (nonatomic,strong)UIImage * displayImg;
-@property (nonatomic,assign)BOOL isSelected;
+@property (nonatomic,strong) UIImage * displayImg;
+@property (nonatomic,assign) BOOL isSelected;
+@property (nonatomic,assign) NSInteger photoIndex;
 
 @end

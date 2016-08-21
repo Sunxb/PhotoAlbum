@@ -13,7 +13,8 @@ static NSString * cellID = @"photoAlbumCell";
 
 @interface PhotoDisplayView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic,strong) UICollectionView * rootCollectionView;;
+@property (nonatomic,strong) UICollectionView * rootCollectionView;
+@property (nonatomic,strong) NSMutableArray * selectedIndexArr;
 
 @end
 
@@ -22,6 +23,7 @@ static NSString * cellID = @"photoAlbumCell";
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
+        _selectedIndexArr = [[NSMutableArray alloc] init];
         [self loadPhotoCollectionView];
     }
     return self;
@@ -60,10 +62,26 @@ static NSString * cellID = @"photoAlbumCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoDisplayCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     [cell setPhotoNumIsEnoughBlock:^{
+        if ([self.delegate respondsToSelector:@selector(photoDisplayView_photoSelectedEnough)]) {
+            [self.delegate photoDisplayView_photoSelectedEnough];
+        }
         NSLog(@"只能选9张");
+    }];
+    [cell setPhotoSelectedBlock:^(BOOL isSelected, NSInteger selectedIndex) {
+        if (isSelected) {
+            if (![_selectedIndexArr containsObject:@(selectedIndex)]) {
+                [_selectedIndexArr addObject:@(selectedIndex)];
+            }
+            
+        }
+        else {
+            [_selectedIndexArr removeObject:@(selectedIndex)];
+        }
+        self.selectedPhotoIndexBlock(_selectedIndexArr);
     }];
     cell.backgroundColor = [UIColor greenColor];
     cell.model = self.photoArr[indexPath.row];
+    cell.model.photoIndex = indexPath.row;
     return cell;
 }
 

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PickerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8CC013C73EF2961644A824AC500608C5</key>
+		<key>53B5AF1AEB44866F602E9C8731901A00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7230E4B4E6775D377A38FC230B3073B</key>
+		<key>F43ADE2A9515E0BEAB64FA9D00DBBE2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
