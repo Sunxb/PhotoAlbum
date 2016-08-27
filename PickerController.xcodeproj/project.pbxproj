@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F5791591D719E0800519CD3 /* ScaleOriginalPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5791581D719E0800519CD3 /* ScaleOriginalPhotoView.m */; };
 		3F6D54E41D67F8C500A36272 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D54E31D67F8C500A36272 /* main.m */; };
 		3F6D54E71D67F8C500A36272 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D54E61D67F8C500A36272 /* AppDelegate.m */; };
 		3F6D54EA1D67F8C500A36272 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D54E91D67F8C500A36272 /* ViewController.m */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F5791571D719E0800519CD3 /* ScaleOriginalPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleOriginalPhotoView.h; sourceTree = "<group>"; };
+		3F5791581D719E0800519CD3 /* ScaleOriginalPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleOriginalPhotoView.m; sourceTree = "<group>"; };
 		3F6D54DF1D67F8C500A36272 /* PickerController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickerController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6D54E31D67F8C500A36272 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3F6D54E51D67F8C500A36272 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				3F6D55241D68237400A36272 /* PhotoDisplayCell.xib */,
 				3F6D552D1D682A9D00A36272 /* PhotoModel.h */,
 				3F6D552E1D682A9D00A36272 /* PhotoModel.m */,
+				3F5791571D719E0800519CD3 /* ScaleOriginalPhotoView.h */,
+				3F5791581D719E0800519CD3 /* ScaleOriginalPhotoView.m */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				3F6D552A1D68237400A36272 /* PhotoDisplayCell.m in Sources */,
 				3F6D552F1D682A9D00A36272 /* PhotoModel.m in Sources */,
 				3F6D54EA1D67F8C500A36272 /* ViewController.m in Sources */,
+				3F5791591D719E0800519CD3 /* ScaleOriginalPhotoView.m in Sources */,
 				3F6D54E71D67F8C500A36272 /* AppDelegate.m in Sources */,
 				3F6D54E41D67F8C500A36272 /* main.m in Sources */,
 				3F6D552C1D68237400A36272 /* PhotoDisplayView.m in Sources */,

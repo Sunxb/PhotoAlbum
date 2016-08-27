@@ -8,6 +8,7 @@
 
 #import "PhotoDisplayView.h"
 #import "PhotoDisplayCell.h"
+#import "ScaleOriginalPhotoView.h"
 
 static NSString * cellID = @"photoAlbumCell";
 
@@ -85,6 +86,12 @@ static NSString * cellID = @"photoAlbumCell";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld",indexPath.row);
+    PhotoDisplayCell * cell = (PhotoDisplayCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    ScaleOriginalPhotoView * scanleView = [[ScaleOriginalPhotoView alloc] init];
+    [scanleView scaleOrigimalPhoto:cell.photoImg];
+}
 
 
 

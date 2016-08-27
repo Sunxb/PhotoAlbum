@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "PhotoAlbumViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVMediaFormat.h>
 
 @interface ViewController ()
 
@@ -31,8 +34,21 @@
 }
 
 - (void)cilickedOnOpenAlbumBtn:(UIButton *)btn {
-    PhotoAlbumViewController * photoAlbunVC = [[PhotoAlbumViewController alloc] init];
-    [self.navigationController pushViewController:photoAlbunVC animated:YES];
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
+        // 拒绝 --
+        NSLog(@"%@",@"拒绝");
+        UIAlertView * alart = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"请您设置允许APP访问您的相册\n设置>隐私>照片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alart show];
+        return ;
+    }
+    else {
+        PhotoAlbumViewController * photoAlbunVC = [[PhotoAlbumViewController alloc] init];
+        [self.navigationController pushViewController:photoAlbunVC animated:YES];
+    }
+
+//    PhotoAlbumViewController * photoAlbunVC = [[PhotoAlbumViewController alloc] init];
+//    [self.navigationController pushViewController:photoAlbunVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
