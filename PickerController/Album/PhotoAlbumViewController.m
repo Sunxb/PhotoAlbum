@@ -19,8 +19,8 @@
 #define KHeight self.view.frame.size.height
 
 @interface PhotoAlbumViewController ()<PhotoDisplayViewDelegate>
-@property (nonatomic,strong) NSMutableDictionary * albumDict;
 @property (nonatomic,strong) NSMutableArray * thumbnailArr;
+@property (nonatomic,strong) NSMutableArray * originalArr;
 
 @property (nonatomic,strong) PhotoDisplayView * displayView;
 
@@ -41,11 +41,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedPhotoSelectedNotification:) name:@"photoIsSelected" object:nil];
     
     _photoNum = 0;
-    _albumDict = [NSMutableDictionary new];
     
     [self loadNavBarView];
+    
     [self loadPhotoDisplayView];
     [self getThumbnailImages];
+    [self getOriginalImages];
 }
 
 - (void)loadNavBarView {
@@ -125,7 +126,7 @@
     [_displayView setSelectedPhotoIndexBlock:^(NSArray * selectedIndexArr) {
         _indexArr = [[NSMutableArray alloc] initWithArray:selectedIndexArr];
     }];
-    [_displayView loadPhotoAlbumView];
+//    [_displayView loadPhotoAlbumView];
     [self.view addSubview:_displayView];
 }
 
@@ -138,7 +139,7 @@
 //        [self enumerateAssetsInAssetCollection:assetCollection original:NO];
 //    }
     
-    _thumbnailArr = [[NSMutableArray alloc] init];
+    _thumbnailArr = [NSMutableArray new];
     // 获得系统相册
     PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
     [self enumerateAssetsInAssetCollection:cameraRoll original:NO containerArr:_thumbnailArr];
@@ -149,17 +150,19 @@
 
 
 - (void)getOriginalImages {
-    // 获得所有的自定义相簿
-    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    // 遍历所有的自定义相簿
-    for (PHAssetCollection *assetCollection in assetCollections) {
-        [self enumerateAssetsInAssetCollection:assetCollection original:YES  containerArr:nil];
-    }
+//    // 获得所有的自定义相簿
+//    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+//    // 遍历所有的自定义相簿
+//    for (PHAssetCollection *assetCollection in assetCollections) {
+//        [self enumerateAssetsInAssetCollection:assetCollection original:YES  containerArr:nil];
+//    }
     
+    _originalArr = [NSMutableArray new];
     // 获得相机胶卷
     PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
     // 遍历相机胶卷,获取大图
-    [self enumerateAssetsInAssetCollection:cameraRoll original:YES containerArr:nil];
+    [self enumerateAssetsInAssetCollection:cameraRoll original:YES containerArr:_originalArr];
+    _displayView.originalphotoArr = [[NSMutableArray alloc] initWithArray:_originalArr];
 }
 
 

@@ -14,8 +14,11 @@
 
 @interface PhotoDisplayView : UIView
 
-/*展示的照片*/
+/*展示的照片 缩略图*/
 @property (nonatomic,strong) NSMutableArray * photoArr;
+/*原图*/
+@property (nonatomic,strong)NSMutableArray * originalphotoArr;
+
 @property (nonatomic,strong) void(^selectedPhotoIndexBlock)(NSArray * indexArr);
 @property (nonatomic,weak) id <PhotoDisplayViewDelegate> delegate;
 - (void)loadPhotoAlbumView;

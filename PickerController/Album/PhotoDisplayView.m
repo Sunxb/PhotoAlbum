@@ -90,7 +90,7 @@ static NSString * cellID = @"photoAlbumCell";
     NSLog(@"%ld",indexPath.row);
     PhotoDisplayCell * cell = (PhotoDisplayCell *)[collectionView cellForItemAtIndexPath:indexPath];
     ScaleOriginalPhotoView * scanleView = [[ScaleOriginalPhotoView alloc] init];
-    [scanleView scaleOrigimalPhoto:cell.photoImg];
+    [scanleView scaleOrigimalPhoto:cell.photoImg showOriginalImg:[self.originalphotoArr[indexPath.row] displayImg]];
 }
 
 

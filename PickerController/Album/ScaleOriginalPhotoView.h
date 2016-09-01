@@ -10,6 +10,7 @@
 
 @interface ScaleOriginalPhotoView : UIView
 
-- (void)scaleOrigimalPhoto:(UIImageView *)currentImgView;
+//- (instancetype)initWithShowImg:(UIImage *)showImg;
+- (void)scaleOrigimalPhoto:(UIImageView *)currentImgView showOriginalImg:(UIImage *)showImg;
 
 @end
