@@ -89,69 +89,6 @@ CGFloat oldImgHeight;
         }
     }];
 }
-// 捏合
-- (void)pinchOnImg:(UIPinchGestureRecognizer *)pinchRecognize {
-////    UIImageView * pinchIV = (UIImageView *)pinchRecognize.view;
-//    if (pinchRecognize.state == UIGestureRecognizerStateBegan || pinchRecognize.state == UIGestureRecognizerStateChanged) {
-////        pinchRecognize.view.transform = CGAffineTransformScale(pinchRecognize.view.transform, pinchRecognize.scale, pinchRecognize.scale);
-////        pinchRecognize.view.frame = CGRectMake(0, 0, pinchRecognize.view.frame.size.width*pinchRecognize.scale, pinchRecognize.view.frame.size.height*pinchRecognize.scale);
-//        
-//        if (pinchRecognize.view.frame.size.width*pinchRecognize.scale>KViewWidth && pinchRecognize.view.frame.size.height*pinchRecognize.scale<KViewHeight) {
-//            _rootScrollView.contentOffset = CGPointMake(pinchRecognize.view.frame.size.width*(pinchRecognize.scale-1)/2.0, 0);
-//            pinchRecognize.view.frame = CGRectMake(0, (KViewHeight-pinchRecognize.view.frame.size.height*pinchRecognize.scale)/2.0, pinchRecognize.view.frame.size.width*pinchRecognize.scale, pinchRecognize.view.frame.size.height*pinchRecognize.scale);
-//        }
-//        if (pinchRecognize.view.frame.size.width*pinchRecognize.scale>KViewWidth && pinchRecognize.view.frame.size.height*pinchRecognize.scale>KViewHeight) {
-//            _rootScrollView.contentOffset = CGPointMake(pinchRecognize.view.frame.size.width*(pinchRecognize.scale-1)/2.0, pinchRecognize.view.frame.size.height*(pinchRecognize.scale-1)/2.0);
-//            pinchRecognize.view.frame = CGRectMake(0, 0, pinchRecognize.view.frame.size.width*pinchRecognize.scale, pinchRecognize.view.frame.size.height*pinchRecognize.scale);
-//        }
-//        if (pinchRecognize.view.frame.size.width*pinchRecognize.scale<KViewWidth && pinchRecognize.view.frame.size.height*pinchRecognize.scale<KViewHeight) {
-//            _rootScrollView.contentOffset = CGPointMake(0, 0);
-//            pinchRecognize.view.frame = CGRectMake((KViewWidth-pinchRecognize.view.frame.size.width*pinchRecognize.scale)/2.0, (KViewHeight-pinchRecognize.view.frame.size.height*pinchRecognize.scale)/2.0, pinchRecognize.view.frame.size.width*pinchRecognize.scale, pinchRecognize.view.frame.size.height*pinchRecognize.scale);
-//        }
-//
-////        pinchRecognize.view.center = _rootScrollView.center;
-//        NSLog(@"%f",pinchRecognize.scale);
-//        NSLog(@"%f ====== %f",pinchRecognize.view.frame.origin.x,pinchRecognize.view.frame.origin.y);
-//        pinchRecognize.scale = 1;
-//    }
-    
-//    if (pinchRecognize.state == UIGestureRecognizerStateEnded) {
-//        // 最小不能比原图小
-//        if (pinchRecognize.view.frame.size.width < KViewWidth) {
-//            [UIView animateWithDuration:0.3 animations:^{
-//                CGFloat newWidth = KViewWidth;
-//                CGFloat newHeight = newWidth/(oldImgWidth*1.0/oldImgHeight);
-//                CGFloat yPosition = (KViewHeight-newHeight)/2.0;
-//                pinchRecognize.view.frame = CGRectMake(0, yPosition, newWidth, newHeight);
-//            } completion:^(BOOL finished) {
-//                _rootScrollView.contentOffset = CGPointMake(0, 0);
-//                _rootScrollView.contentSize = CGSizeMake(pinchRecognize.view.frame.size.width, pinchRecognize.view.frame.size.height);
-//            }];
-//        }
-//        // 最多放大1.8
-//        if (pinchRecognize.view.frame.size.width > KViewWidth*1.8) {
-//            [UIView animateWithDuration:0.3 animations:^{
-//                CGFloat newWidth = KViewWidth*1.8;
-//                CGFloat newHeight = newWidth/(oldImgWidth*1.0/oldImgHeight);
-//                CGFloat yPosition = (KViewHeight-newHeight)/2.0;
-//                _rootScrollView.contentOffset = CGPointMake((KViewWidth*0.9/2), newHeight>KViewHeight?(KViewHeight*0.9/2):0);
-//                pinchRecognize.view.frame = CGRectMake(0, newHeight>KViewHeight?0:yPosition, newWidth, newHeight);
-//            } completion:^(BOOL finished) {
-//                _rootScrollView.contentSize = CGSizeMake(pinchRecognize.view.frame.size.width, pinchRecognize.view.frame.size.height);
-//            }];
-//        }
-//    }
-
-//    _rootScrollView.contentSize = CGSizeMake(pinchRecognize.view.frame.size.width, pinchRecognize.view.frame.size.height);
-    
-    
-    
-    
-    
-}
-
-
-
 
 #pragma mark scrollView的delegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -173,8 +110,6 @@ CGFloat oldImgHeight;
 
 
 
-
-//- scrollview
 
 /*
 // Only override drawRect: if you perform custom drawing.
