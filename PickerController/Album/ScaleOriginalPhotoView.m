@@ -62,7 +62,14 @@ CGFloat oldImgHeight;
     // 添加手势
     //tap
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnImg:)];
+    tap.numberOfTapsRequired = 1;
     [newImgView addGestureRecognizer:tap];
+    
+    //双击
+    UITapGestureRecognizer * tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    tap2.numberOfTapsRequired = 2;
+    [tap requireGestureRecognizerToFail: tap2];
+    [newImgView addGestureRecognizer:tap2];
     
     // 变大
     [UIView animateWithDuration:0.4 animations:^{
@@ -89,6 +96,20 @@ CGFloat oldImgHeight;
         }
     }];
 }
+
+- (void)doubleTap:(UITapGestureRecognizer *)tap {
+    if (_rootScrollView.zoomScale > 1) {
+        [_rootScrollView setZoomScale:1 animated:YES];
+    } else {
+        CGPoint touchPoint = [tap locationInView:tap.view];
+        CGFloat newZoomScale = _rootScrollView.maximumZoomScale;
+        CGFloat xsize = KViewWidth / newZoomScale;
+        CGFloat ysize = KViewHeight / newZoomScale;
+        [_rootScrollView zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
+    }
+}
+
+
 
 #pragma mark scrollView的delegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
